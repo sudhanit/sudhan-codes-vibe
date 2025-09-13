@@ -20,8 +20,22 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20">
-      <div className="container mx-auto text-center max-w-4xl">
+    <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-20 relative overflow-hidden">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover"
+        >
+          <source src="/background-video.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-background/80"></div>
+      </div>
+      
+      <div className="container mx-auto text-center max-w-4xl relative z-10">
         <div className="animate-fade-in">
           <div className="mb-8">
             <img
