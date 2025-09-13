@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Download } from 'lucide-react';
 import profilePhoto from '@/assets/profile-photo.jpg';
 
 const Hero = () => {
@@ -7,6 +8,15 @@ const Hero = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const downloadResume = () => {
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'Sudhan_M_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -44,6 +54,15 @@ const Hero = () => {
               className="hero-gradient text-white hover:opacity-90 transition-smooth px-8 py-4 text-lg font-semibold"
             >
               View My Work
+            </Button>
+            <Button 
+              onClick={downloadResume}
+              variant="secondary"
+              size="lg"
+              className="bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-smooth px-8 py-4 text-lg font-semibold flex items-center gap-2"
+            >
+              <Download size={20} />
+              Resume
             </Button>
             <Button 
               onClick={() => scrollToSection('contact')}
