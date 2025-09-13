@@ -1,10 +1,27 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ExternalLink, Code } from 'lucide-react';
+import { MessageCircle, ExternalLink, Code, ShoppingBag } from 'lucide-react';
 
 const Portfolio = () => {
   const projects = [
+    {
+      title: "Grocery Store Management System",
+      description: "A Python-based application designed to simplify the management of products, stock, and customer billing in a retail environment. This menu-driven system allows store owners to efficiently add, update, and view product details, including price and quantity. Features automatic stock management with real-time inventory updates.",
+      technologies: ["Python", "JSON", "File Handling", "Object-Oriented Programming", "Data Structures"],
+      features: [
+        "Product management (add, update, view)",
+        "Real-time stock management",
+        "Customer billing system",
+        "Shopping cart functionality",
+        "Automatic inventory updates",
+        "JSON data storage",
+        "Menu-driven interface",
+        "Stock availability validation"
+      ],
+      icon: ShoppingBag,
+      color: "bg-success/10 text-success"
+    },
     {
       title: "Chatbot Application",
       description: "Built with HTML, CSS, and JavaScript, this web-based chatbot integrates Google's Gemini API to provide interactive AI conversations. Features include a toggle UI, responsive design, dynamic messaging, error handling, and modern UX styling.",
