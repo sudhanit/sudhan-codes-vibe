@@ -54,6 +54,7 @@ const About = () => {
                     <div>
                       <h4 className="font-semibold text-foreground">Current</h4>
                       <p className="text-muted-foreground">B.Tech (IT), Mahendra Institute of Technology</p>
+                      <p className="text-sm text-muted-foreground">CGPA: 8.48</p>
                       <p className="text-sm text-light">Graduating 2027</p>
                     </div>
                   </div>
