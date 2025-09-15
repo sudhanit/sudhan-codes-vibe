@@ -1,5 +1,6 @@
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
 import { 
   Code, 
   Globe, 
@@ -27,38 +28,38 @@ import {
 const Skills = () => {
   const skills = [
     // Programming Languages
-    { name: "C++", icon: Cpu, color: "bg-primary/10 text-primary", category: "Programming" },
-    { name: "Python", icon: Terminal, color: "bg-primary/10 text-primary", category: "Programming" },
-    { name: "Java", icon: Code, color: "bg-primary/10 text-primary", category: "Programming" },
-    { name: "JavaScript", icon: Braces, color: "bg-primary/10 text-primary", category: "Programming" },
+    { name: "C++", icon: Cpu, color: "bg-primary/10 text-primary", category: "Programming", percentage: 85 },
+    { name: "Python", icon: Terminal, color: "bg-primary/10 text-primary", category: "Programming", percentage: 90 },
+    { name: "Java", icon: Code, color: "bg-primary/10 text-primary", category: "Programming", percentage: 88 },
+    { name: "JavaScript", icon: Braces, color: "bg-primary/10 text-primary", category: "Programming", percentage: 82 },
     
     // Web Technologies
-    { name: "HTML", icon: Layout, color: "bg-success/10 text-success", category: "Web" },
-    { name: "CSS", icon: Palette, color: "bg-success/10 text-success", category: "Web" },
-    { name: "React", icon: Layers, color: "bg-success/10 text-success", category: "Web" },
-    { name: "Angular", icon: Globe, color: "bg-success/10 text-success", category: "Web" },
+    { name: "HTML", icon: Layout, color: "bg-success/10 text-success", category: "Web", percentage: 95 },
+    { name: "CSS", icon: Palette, color: "bg-success/10 text-success", category: "Web", percentage: 90 },
+    { name: "React", icon: Layers, color: "bg-success/10 text-success", category: "Web", percentage: 85 },
+    { name: "Angular", icon: Globe, color: "bg-success/10 text-success", category: "Web", percentage: 78 },
     
     // Database
-    { name: "SQL", icon: Database, color: "bg-accent/10 text-accent", category: "Database" },
-    { name: "MongoDB", icon: Server, color: "bg-accent/10 text-accent", category: "Database" },
+    { name: "SQL", icon: Database, color: "bg-accent/10 text-accent", category: "Database", percentage: 80 },
+    { name: "MongoDB", icon: Server, color: "bg-accent/10 text-accent", category: "Database", percentage: 75 },
     
     // Tools & Frameworks
-    { name: "Node.js", icon: Zap, color: "bg-muted/10 text-muted-foreground", category: "Backend" },
-    { name: "Express.js", icon: Server, color: "bg-muted/10 text-muted-foreground", category: "Backend" },
-    { name: "Django", icon: Settings, color: "bg-muted/10 text-muted-foreground", category: "Backend" },
-    { name: "Flask", icon: Package, color: "bg-muted/10 text-muted-foreground", category: "Backend" },
-    { name: "Git", icon: GitBranch, color: "bg-secondary/10 text-secondary-foreground", category: "Tools" },
-    { name: "GitHub", icon: Github, color: "bg-secondary/10 text-secondary-foreground", category: "Tools" },
+    { name: "Node.js", icon: Zap, color: "bg-muted/10 text-muted-foreground", category: "Backend", percentage: 83 },
+    { name: "Express.js", icon: Server, color: "bg-muted/10 text-muted-foreground", category: "Backend", percentage: 80 },
+    { name: "Django", icon: Settings, color: "bg-muted/10 text-muted-foreground", category: "Backend", percentage: 78 },
+    { name: "Flask", icon: Package, color: "bg-muted/10 text-muted-foreground", category: "Backend", percentage: 75 },
+    { name: "Git", icon: GitBranch, color: "bg-secondary/10 text-secondary-foreground", category: "Tools", percentage: 85 },
+    { name: "GitHub", icon: Github, color: "bg-secondary/10 text-secondary-foreground", category: "Tools", percentage: 88 },
     
     // Deployment
-    { name: "Docker", icon: Package, color: "bg-warning/10 text-warning", category: "DevOps" },
-    { name: "AWS", icon: Cloud, color: "bg-warning/10 text-warning", category: "DevOps" },
-    { name: "Netlify", icon: Globe, color: "bg-warning/10 text-warning", category: "DevOps" },
-    { name: "Heroku", icon: MonitorSpeaker, color: "bg-warning/10 text-warning", category: "DevOps" },
+    { name: "Docker", icon: Package, color: "bg-warning/10 text-warning", category: "DevOps", percentage: 70 },
+    { name: "AWS", icon: Cloud, color: "bg-warning/10 text-warning", category: "DevOps", percentage: 72 },
+    { name: "Netlify", icon: Globe, color: "bg-warning/10 text-warning", category: "DevOps", percentage: 80 },
+    { name: "Heroku", icon: MonitorSpeaker, color: "bg-warning/10 text-warning", category: "DevOps", percentage: 75 },
     
     // Certifications
-    { name: "English Typing (Junior)", icon: Trophy, color: "bg-destructive/10 text-destructive", category: "Certification" },
-    { name: "English Typing (Senior)", icon: Award, color: "bg-destructive/10 text-destructive", category: "Certification" }
+    { name: "English Typing (Junior)", icon: Trophy, color: "bg-destructive/10 text-destructive", category: "Certification", percentage: 100 },
+    { name: "English Typing (Senior)", icon: Award, color: "bg-destructive/10 text-destructive", category: "Certification", percentage: 100 }
   ];
 
   return (
@@ -85,16 +86,26 @@ const Skills = () => {
                   <div className={`p-3 rounded-xl ${skill.color} group-hover:scale-110 transition-smooth`}>
                     <skill.icon className="w-6 h-6" />
                   </div>
-                  <div>
+                  <div className="w-full">
                     <h3 className="text-sm font-semibold text-foreground mb-1">
                       {skill.name}
                     </h3>
                     <Badge
                       variant="outline"
-                      className="text-xs px-2 py-1 bg-muted/50 border-border/50"
+                      className="text-xs px-2 py-1 bg-muted/50 border-border/50 mb-2"
                     >
                       {skill.category}
                     </Badge>
+                    <div className="mt-3 space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-xs text-muted-foreground">Proficiency</span>
+                        <span className="text-xs font-semibold text-foreground">{skill.percentage}%</span>
+                      </div>
+                      <Progress 
+                        value={skill.percentage} 
+                        className="h-2 bg-muted/50"
+                      />
+                    </div>
                   </div>
                 </div>
               </Card>
