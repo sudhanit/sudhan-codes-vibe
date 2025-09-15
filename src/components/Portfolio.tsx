@@ -1,10 +1,27 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ExternalLink, Code, ShoppingBag } from 'lucide-react';
+import { MessageCircle, ExternalLink, Code, ShoppingBag, Calculator, Image } from 'lucide-react';
 
 const Portfolio = () => {
   const projects = [
+    {
+      title: "Sum Calculator with Image Processing",
+      description: "An innovative application that combines mathematical calculations with image processing capabilities. This project allows users to perform sum calculations on numerical data extracted from images, process image headings, and generate visual summaries. Features include text recognition, mathematical operations, and dynamic image manipulation.",
+      technologies: ["Python", "OpenCV", "PIL/Pillow", "Tesseract OCR", "NumPy", "Matplotlib", "Tkinter"],
+      features: [
+        "Image text extraction and recognition",
+        "Mathematical sum calculations from images",
+        "Dynamic heading generation for pictures",
+        "Batch image processing",
+        "Visual data representation", 
+        "Image annotation and labeling",
+        "Export results to various formats",
+        "User-friendly GUI interface"
+      ],
+      icon: Calculator,
+      color: "bg-accent/10 text-accent"
+    },
     {
       title: "Grocery Store Management System",
       description: "A Python-based application designed to simplify the management of products, stock, and customer billing in a retail environment. This menu-driven system allows store owners to efficiently add, update, and view product details, including price and quantity. Features automatic stock management with real-time inventory updates.",
