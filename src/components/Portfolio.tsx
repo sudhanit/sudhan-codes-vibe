@@ -2,6 +2,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { MessageCircle, ExternalLink, Code, ShoppingBag, Calculator, Image } from 'lucide-react';
+import sumCalculatorImage from '@/assets/sum-calculator-project.jpg';
+import groceryManagementImage from '@/assets/grocery-management-project.jpg';
+import chatbotImage from '@/assets/chatbot-project.jpg';
 
 const Portfolio = () => {
   const projects = [
@@ -20,7 +23,8 @@ const Portfolio = () => {
         "User-friendly GUI interface"
       ],
       icon: Calculator,
-      color: "bg-accent/10 text-accent"
+      color: "bg-accent/10 text-accent",
+      image: sumCalculatorImage
     },
     {
       title: "Grocery Store Management System",
@@ -37,7 +41,8 @@ const Portfolio = () => {
         "Stock availability validation"
       ],
       icon: ShoppingBag,
-      color: "bg-success/10 text-success"
+      color: "bg-success/10 text-success",
+      image: groceryManagementImage
     },
     {
       title: "Chatbot Application",
@@ -52,7 +57,8 @@ const Portfolio = () => {
         "Modern UX styling"
       ],
       icon: MessageCircle,
-      color: "bg-primary/10 text-primary"
+      color: "bg-primary/10 text-primary",
+      image: chatbotImage
     }
   ];
 
@@ -91,6 +97,13 @@ const Portfolio = () => {
                 </CardHeader>
                 
                 <CardContent className="space-y-6">
+                  <div className="mb-6">
+                    <img 
+                      src={project.image} 
+                      alt={`${project.title} preview`}
+                      className="w-full h-48 object-cover rounded-lg shadow-soft"
+                    />
+                  </div>
                   <p className="text-lg text-muted-foreground leading-relaxed">
                     {project.description}
                   </p>
