@@ -17,7 +17,7 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 gap-8 items-center mb-12">
             <div className="animate-slide-in">
-              <h3 className="text-2xl font-semibold mb-6 text-foreground">My Story</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-foreground">About me</h3>
               <p className="text-lg text-muted-foreground leading-relaxed mb-6">
                 I'm a passionate B.Tech (Information Technology) student with an insatiable curiosity 
                 for technology and problem-solving. My journey in programming began with a fascination 
