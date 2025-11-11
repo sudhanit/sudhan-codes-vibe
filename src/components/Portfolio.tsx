@@ -1,12 +1,13 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ExternalLink, Code, ShoppingBag, Calculator, GraduationCap, Scan } from 'lucide-react';
+import { MessageCircle, ExternalLink, Code, ShoppingBag, Calculator, GraduationCap, Scan, Bus } from 'lucide-react';
 import sumCalculatorImage from '@/assets/sum-calculator-project.jpg';
 import groceryManagementImage from '@/assets/grocery-management-project.jpg';
 import chatbotImage from '@/assets/chatbot-project.jpg';
 import studentManagementImage from '@/assets/student-management-project.jpg';
 import faceRecognitionImage from '@/assets/face-recognition-project.jpg';
+import busTrackingImage from '@/assets/bus-tracking-project.jpg';
 
 const Portfolio = () => {
   const projects = [
@@ -97,6 +98,24 @@ const Portfolio = () => {
       icon: Scan,
       color: "bg-info/10 text-info",
       image: faceRecognitionImage
+    },
+    {
+      title: "College Bus Tracking System",
+      description: "A comprehensive GPS-based tracking system designed for college transportation management. This application provides real-time bus location tracking, route optimization, and estimated arrival times for students and parents. Features include live location updates, route planning, notification alerts, and comprehensive analytics for fleet management.",
+      technologies: ["GPS Integration", "Google Maps API", "Real-time Database", "Mobile Development", "Web Technologies", "Notification Services"],
+      features: [
+        "Real-time GPS bus tracking",
+        "Live location updates on map",
+        "Route optimization and planning",
+        "ETA notifications for students",
+        "Multiple bus fleet management",
+        "Pickup and drop-off point tracking",
+        "Parent/student mobile app",
+        "Historical route analytics"
+      ],
+      icon: Bus,
+      color: "bg-warning/10 text-warning",
+      image: busTrackingImage
     }
   ];
 
