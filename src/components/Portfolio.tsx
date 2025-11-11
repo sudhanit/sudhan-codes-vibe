@@ -1,10 +1,11 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ExternalLink, Code, ShoppingBag, Calculator, Image } from 'lucide-react';
+import { MessageCircle, ExternalLink, Code, ShoppingBag, Calculator, GraduationCap } from 'lucide-react';
 import sumCalculatorImage from '@/assets/sum-calculator-project.jpg';
 import groceryManagementImage from '@/assets/grocery-management-project.jpg';
 import chatbotImage from '@/assets/chatbot-project.jpg';
+import studentManagementImage from '@/assets/student-management-project.jpg';
 
 const Portfolio = () => {
   const projects = [
@@ -59,6 +60,24 @@ const Portfolio = () => {
       icon: MessageCircle,
       color: "bg-primary/10 text-primary",
       image: chatbotImage
+    },
+    {
+      title: "Students Management System",
+      description: "A comprehensive student management system designed to streamline academic administration. This application manages student records, tracks attendance, handles grade management, and provides detailed performance analytics. Features include real-time data visualization, academic reporting, and efficient student information management.",
+      technologies: ["Python", "Database Management", "Data Analytics", "Object-Oriented Programming", "GUI Development"],
+      features: [
+        "Student records management",
+        "Attendance tracking system",
+        "Grade management and calculation",
+        "Performance analytics dashboard",
+        "Academic report generation",
+        "Student enrollment processing",
+        "Data visualization charts",
+        "Search and filter functionality"
+      ],
+      icon: GraduationCap,
+      color: "bg-secondary/10 text-secondary",
+      image: studentManagementImage
     }
   ];
 
