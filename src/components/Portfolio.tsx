@@ -1,11 +1,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { MessageCircle, ExternalLink, Code, ShoppingBag, Calculator, GraduationCap } from 'lucide-react';
+import { MessageCircle, ExternalLink, Code, ShoppingBag, Calculator, GraduationCap, Scan } from 'lucide-react';
 import sumCalculatorImage from '@/assets/sum-calculator-project.jpg';
 import groceryManagementImage from '@/assets/grocery-management-project.jpg';
 import chatbotImage from '@/assets/chatbot-project.jpg';
 import studentManagementImage from '@/assets/student-management-project.jpg';
+import faceRecognitionImage from '@/assets/face-recognition-project.jpg';
 
 const Portfolio = () => {
   const projects = [
@@ -78,6 +79,24 @@ const Portfolio = () => {
       icon: GraduationCap,
       color: "bg-secondary/10 text-secondary",
       image: studentManagementImage
+    },
+    {
+      title: "Face Recognition System",
+      description: "An advanced face recognition application that uses computer vision and machine learning to detect, identify, and verify faces in real-time. This system implements deep learning algorithms for accurate facial detection, feature extraction, and biometric authentication. Suitable for security systems, attendance tracking, and identity verification applications.",
+      technologies: ["Python", "OpenCV", "Deep Learning", "TensorFlow/Keras", "Face Recognition Library", "NumPy", "Computer Vision"],
+      features: [
+        "Real-time face detection and tracking",
+        "Facial feature extraction",
+        "Multiple face recognition",
+        "Biometric authentication",
+        "Face database management",
+        "Live camera feed processing",
+        "High accuracy identification",
+        "Security access control integration"
+      ],
+      icon: Scan,
+      color: "bg-info/10 text-info",
+      image: faceRecognitionImage
     }
   ];
 
