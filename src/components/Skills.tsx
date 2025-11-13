@@ -1,19 +1,18 @@
 import { Badge } from '@/components/ui/badge';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useState, useEffect, useRef } from 'react';
 import { 
   Code, 
   Globe, 
   Database, 
-  Wrench, 
   Award, 
   Cloud,
   Zap,
   Layers,
   Terminal,
   Braces,
-  FileCode,
   Server,
   Settings,
   GitBranch,
@@ -28,59 +27,78 @@ import {
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [animatedSkills, setAnimatedSkills] = useState<number[]>([]);
+  const [activeTab, setActiveTab] = useState("all");
   const sectionRef = useRef<HTMLElement>(null);
 
-  const skills = [
-    // Programming Languages
-    { name: "C++", icon: Cpu, color: "bg-primary/10 text-primary", category: "Programming", percentage: 85 },
-    { name: "Python", icon: Terminal, color: "bg-primary/10 text-primary", category: "Programming", percentage: 90 },
-    { name: "Java", icon: Code, color: "bg-primary/10 text-primary", category: "Programming", percentage: 88 },
-    { name: "JavaScript", icon: Braces, color: "bg-primary/10 text-primary", category: "Programming", percentage: 82 },
-    
-    // Web Technologies
-    { name: "HTML", icon: Layout, color: "bg-success/10 text-success", category: "Web", percentage: 95 },
-    { name: "CSS", icon: Palette, color: "bg-success/10 text-success", category: "Web", percentage: 90 },
-    { name: "React", icon: Layers, color: "bg-success/10 text-success", category: "Web", percentage: 85 },
-    { name: "Angular", icon: Globe, color: "bg-success/10 text-success", category: "Web", percentage: 78 },
-    
-    // Database
-    { name: "SQL", icon: Database, color: "bg-accent/10 text-accent", category: "Database", percentage: 80 },
-    { name: "MongoDB", icon: Server, color: "bg-accent/10 text-accent", category: "Database", percentage: 75 },
-    
-    // Tools & Frameworks
-    { name: "Node.js", icon: Zap, color: "bg-muted/10 text-muted-foreground", category: "Backend", percentage: 83 },
-    { name: "Express.js", icon: Server, color: "bg-muted/10 text-muted-foreground", category: "Backend", percentage: 80 },
-    { name: "Django", icon: Settings, color: "bg-muted/10 text-muted-foreground", category: "Backend", percentage: 78 },
-    { name: "Flask", icon: Package, color: "bg-muted/10 text-muted-foreground", category: "Backend", percentage: 75 },
-    { name: "Git", icon: GitBranch, color: "bg-secondary/10 text-secondary-foreground", category: "Tools", percentage: 85 },
-    { name: "GitHub", icon: Github, color: "bg-secondary/10 text-secondary-foreground", category: "Tools", percentage: 88 },
-    
-    // Deployment
-    { name: "Docker", icon: Package, color: "bg-warning/10 text-warning", category: "DevOps", percentage: 70 },
-    { name: "AWS", icon: Cloud, color: "bg-warning/10 text-warning", category: "DevOps", percentage: 72 },
-    { name: "Netlify", icon: Globe, color: "bg-warning/10 text-warning", category: "DevOps", percentage: 80 },
-    { name: "Heroku", icon: MonitorSpeaker, color: "bg-warning/10 text-warning", category: "DevOps", percentage: 75 },
-    
-    // Certifications
-    { name: "English Typing (Junior)", icon: Trophy, color: "bg-destructive/10 text-destructive", category: "Certification", percentage: 100 },
-    { name: "English Typing (Senior)", icon: Award, color: "bg-destructive/10 text-destructive", category: "Certification", percentage: 100 }
-  ];
+  const skillCategories = {
+    programming: {
+      title: "Programming Languages",
+      icon: Code,
+      skills: [
+        { name: "Python", icon: Terminal, percentage: 90 },
+        { name: "Java", icon: Code, percentage: 88 },
+        { name: "C++", icon: Cpu, percentage: 85 },
+        { name: "JavaScript", icon: Braces, percentage: 82 },
+      ]
+    },
+    frontend: {
+      title: "Frontend Development",
+      icon: Palette,
+      skills: [
+        { name: "HTML", icon: Layout, percentage: 95 },
+        { name: "CSS", icon: Palette, percentage: 90 },
+        { name: "React", icon: Layers, percentage: 85 },
+        { name: "Angular", icon: Globe, percentage: 78 },
+      ]
+    },
+    backend: {
+      title: "Backend Development",
+      icon: Server,
+      skills: [
+        { name: "Node.js", icon: Zap, percentage: 83 },
+        { name: "Express.js", icon: Server, percentage: 80 },
+        { name: "Django", icon: Settings, percentage: 78 },
+        { name: "Flask", icon: Package, percentage: 75 },
+      ]
+    },
+    database: {
+      title: "Database & Storage",
+      icon: Database,
+      skills: [
+        { name: "SQL", icon: Database, percentage: 80 },
+        { name: "MongoDB", icon: Server, percentage: 75 },
+      ]
+    },
+    devops: {
+      title: "DevOps & Cloud",
+      icon: Cloud,
+      skills: [
+        { name: "Git", icon: GitBranch, percentage: 85 },
+        { name: "GitHub", icon: Github, percentage: 88 },
+        { name: "Netlify", icon: Globe, percentage: 80 },
+        { name: "Docker", icon: Package, percentage: 70 },
+        { name: "AWS", icon: Cloud, percentage: 72 },
+        { name: "Heroku", icon: MonitorSpeaker, percentage: 75 },
+      ]
+    },
+    certifications: {
+      title: "Certifications",
+      icon: Award,
+      skills: [
+        { name: "English Typing (Junior)", icon: Trophy, percentage: 100 },
+        { name: "English Typing (Senior)", icon: Award, percentage: 100 },
+      ]
+    }
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // Start animating skills progressively
-          skills.forEach((_, index) => {
-            setTimeout(() => {
-              setAnimatedSkills(prev => [...prev, index]);
-            }, index * 100); // Stagger each skill by 100ms
-          });
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -88,7 +106,50 @@ const Skills = () => {
     }
 
     return () => observer.disconnect();
-  }, [skills]);
+  }, []);
+
+  const renderSkillCategory = (categoryKey: keyof typeof skillCategories) => {
+    const category = skillCategories[categoryKey];
+    const CategoryIcon = category.icon;
+    
+    return (
+      <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="flex items-center gap-3 mb-6">
+          <div className="p-3 rounded-xl bg-primary/10">
+            <CategoryIcon className="w-6 h-6 text-primary" />
+          </div>
+          <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {category.skills.map((skill, index) => {
+            const SkillIcon = skill.icon;
+            return (
+              <Card 
+                key={index}
+                className="p-6 hover:shadow-lg transition-all duration-300 group hover:scale-[1.02]"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-2 rounded-lg bg-primary/5 group-hover:bg-primary/10 transition-colors">
+                    <SkillIcon className="w-5 h-5 text-primary" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-3">
+                      <h4 className="font-semibold text-foreground">{skill.name}</h4>
+                      <span className="text-sm font-bold text-primary">{skill.percentage}%</span>
+                    </div>
+                    <Progress 
+                      value={isVisible ? skill.percentage : 0} 
+                      className="h-2 bg-muted transition-all duration-1000 ease-out"
+                    />
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section ref={sectionRef} id="skills" className="py-20 section-bg">
@@ -98,65 +159,60 @@ const Skills = () => {
             <h2 className={`text-4xl md:text-5xl font-bold mb-4 text-foreground transition-all duration-1000 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
-              Technical <span className="hero-gradient bg-clip-text text-transparent">Skills</span>
+              Technical <span className="hero-gradient bg-clip-text text-transparent">Expertise</span>
             </h2>
-            <p className={`text-xl text-muted-foreground transition-all duration-1000 delay-300 ${
+            <p className={`text-xl text-muted-foreground transition-all duration-1000 delay-200 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
-              Technologies and tools I work with
+              Comprehensive skill set across full-stack development
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {skills.map((skill, index) => (
-              <Card 
-                key={index}
-                className={`p-4 shadow-soft hover:shadow-medium transition-all duration-700 text-center group cursor-pointer hover:scale-105 ${
-                  animatedSkills.includes(index) 
-                    ? 'opacity-100 translate-y-0 scale-100' 
-                    : 'opacity-0 translate-y-8 scale-95'
-                }`}
-              >
-                <div className="flex flex-col items-center space-y-3">
-                  <div className={`p-3 rounded-xl ${skill.color} group-hover:scale-110 transition-smooth ${
-                    animatedSkills.includes(index) ? 'animate-pulse' : ''
-                  }`}>
-                    <skill.icon className="w-6 h-6" />
-                  </div>
-                  <div className="w-full">
-                    <h3 className="text-sm font-semibold text-foreground mb-1">
-                      {skill.name}
-                    </h3>
-                    <Badge
-                      variant="outline"
-                      className="text-xs px-2 py-1 bg-muted/50 border-border/50 mb-2"
-                    >
-                      {skill.category}
-                    </Badge>
-                    <div className="mt-3 space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-xs text-muted-foreground">Proficiency</span>
-                        <span className={`text-xs font-semibold text-foreground transition-all duration-500 ${
-                          animatedSkills.includes(index) ? 'opacity-100' : 'opacity-0'
-                        }`}>
-                          {animatedSkills.includes(index) ? skill.percentage : 0}%
-                        </span>
-                      </div>
-                      <div className="relative">
-                        <Progress 
-                          value={animatedSkills.includes(index) ? skill.percentage : 0} 
-                          className="h-2 bg-muted/50 transition-all duration-1000 ease-out"
-                        />
-                        {animatedSkills.includes(index) && (
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+          <Tabs defaultValue="all" className="w-full" onValueChange={setActiveTab}>
+            <TabsList className={`grid w-full grid-cols-3 lg:grid-cols-7 mb-12 transition-all duration-700 delay-300 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              <TabsTrigger value="all">All Skills</TabsTrigger>
+              <TabsTrigger value="programming">Programming</TabsTrigger>
+              <TabsTrigger value="frontend">Frontend</TabsTrigger>
+              <TabsTrigger value="backend">Backend</TabsTrigger>
+              <TabsTrigger value="database">Database</TabsTrigger>
+              <TabsTrigger value="devops">DevOps</TabsTrigger>
+              <TabsTrigger value="certifications">Certifications</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="all" className="space-y-12">
+              {(Object.keys(skillCategories) as Array<keyof typeof skillCategories>).map((key) => (
+                <div key={key}>
+                  {renderSkillCategory(key)}
                 </div>
-              </Card>
-            ))}
-          </div>
+              ))}
+            </TabsContent>
+
+            <TabsContent value="programming">
+              {renderSkillCategory('programming')}
+            </TabsContent>
+
+            <TabsContent value="frontend">
+              {renderSkillCategory('frontend')}
+            </TabsContent>
+
+            <TabsContent value="backend">
+              {renderSkillCategory('backend')}
+            </TabsContent>
+
+            <TabsContent value="database">
+              {renderSkillCategory('database')}
+            </TabsContent>
+
+            <TabsContent value="devops">
+              {renderSkillCategory('devops')}
+            </TabsContent>
+
+            <TabsContent value="certifications">
+              {renderSkillCategory('certifications')}
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
     </section>
