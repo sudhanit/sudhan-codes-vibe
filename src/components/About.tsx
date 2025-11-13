@@ -3,8 +3,23 @@ import { MapPin, GraduationCap, Heart } from 'lucide-react';
 
 const About = () => {
   return (
-    <section id="about" className="py-20 section-bg">
-      <div className="container mx-auto px-4">
+    <section id="about" className="py-20 section-bg relative overflow-hidden">
+      {/* Creative Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Animated Gradient Orbs */}
+        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        
+        {/* Geometric Shapes */}
+        <div className="absolute top-1/4 right-1/4 w-32 h-32 border-2 border-primary/20 rounded-lg rotate-45 animate-spin" style={{ animationDuration: '20s' }}></div>
+        <div className="absolute bottom-1/3 left-1/4 w-24 h-24 border-2 border-accent/20 rounded-full animate-bounce" style={{ animationDuration: '3s' }}></div>
+        
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-grid-pattern opacity-5"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
