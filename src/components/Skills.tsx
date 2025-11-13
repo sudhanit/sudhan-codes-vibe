@@ -24,6 +24,12 @@ import {
   Cpu,
   Trophy
 } from 'lucide-react';
+import programmingImage from '@/assets/skills-programming.jpg';
+import frontendImage from '@/assets/skills-frontend.jpg';
+import backendImage from '@/assets/skills-backend.jpg';
+import databaseImage from '@/assets/skills-database.jpg';
+import devopsImage from '@/assets/skills-devops.jpg';
+import certificationsImage from '@/assets/skills-certifications.jpg';
 
 const Skills = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,6 +40,7 @@ const Skills = () => {
     programming: {
       title: "Programming Languages",
       icon: Code,
+      image: programmingImage,
       skills: [
         { name: "Python", icon: Terminal, percentage: 90 },
         { name: "Java", icon: Code, percentage: 88 },
@@ -44,6 +51,7 @@ const Skills = () => {
     frontend: {
       title: "Frontend Development",
       icon: Palette,
+      image: frontendImage,
       skills: [
         { name: "HTML", icon: Layout, percentage: 95 },
         { name: "CSS", icon: Palette, percentage: 90 },
@@ -54,6 +62,7 @@ const Skills = () => {
     backend: {
       title: "Backend Development",
       icon: Server,
+      image: backendImage,
       skills: [
         { name: "Node.js", icon: Zap, percentage: 83 },
         { name: "Express.js", icon: Server, percentage: 80 },
@@ -64,6 +73,7 @@ const Skills = () => {
     database: {
       title: "Database & Storage",
       icon: Database,
+      image: databaseImage,
       skills: [
         { name: "SQL", icon: Database, percentage: 80 },
         { name: "MongoDB", icon: Server, percentage: 75 },
@@ -72,6 +82,7 @@ const Skills = () => {
     devops: {
       title: "DevOps & Cloud",
       icon: Cloud,
+      image: devopsImage,
       skills: [
         { name: "Git", icon: GitBranch, percentage: 85 },
         { name: "GitHub", icon: Github, percentage: 88 },
@@ -84,6 +95,7 @@ const Skills = () => {
     certifications: {
       title: "Certifications",
       icon: Award,
+      image: certificationsImage,
       skills: [
         { name: "English Typing (Junior)", icon: Trophy, percentage: 100 },
         { name: "English Typing (Senior)", icon: Award, percentage: 100 },
@@ -114,12 +126,25 @@ const Skills = () => {
     
     return (
       <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="p-3 rounded-xl bg-primary/10">
-            <CategoryIcon className="w-6 h-6 text-primary" />
+        {/* Category Header with Image */}
+        <div className="relative mb-8 rounded-2xl overflow-hidden group">
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10"></div>
+          <img 
+            src={category.image} 
+            alt={category.title}
+            className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+          <div className="absolute bottom-0 left-0 right-0 z-20 p-6">
+            <div className="flex items-center gap-3">
+              <div className="p-3 rounded-xl bg-primary/20 backdrop-blur-sm border border-primary/20">
+                <CategoryIcon className="w-6 h-6 text-primary" />
+              </div>
+              <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
+            </div>
           </div>
-          <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
         </div>
+
+        {/* Skills Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {category.skills.map((skill, index) => {
             const SkillIcon = skill.icon;
